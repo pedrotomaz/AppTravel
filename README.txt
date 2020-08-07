@@ -1,0 +1,2 @@
+Ao baixar o projeto, deverá executar o comando npm install no cmd NodeJs para carregar todos os pacotes necessários para rodar o projeto em Angular.
+A pasta DB_BKP contem o backup do banco de dados utilizado na apresentação.
