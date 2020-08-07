@@ -1,0 +1,141 @@
+/* .img-center{
+    text-align: center;
+    align-self: center;
+}
+
+.img-list{
+    max-width:300px;
+    max-height:200px;
+    width: auto;
+    height: auto;
+    
+}
+.img-recom{
+    max-width: 200px; 
+    max-height: 120px;
+    width: auto;
+    height: auto;
+}
+.ui-carousel-item{
+    height: auto;
+} */
+/* 
+:host >>> .ui-carousel-item .ui-carousel-item-active .ui-carousel-item-start .ng-star-inserted{
+    display: flex !important;
+    place-content: center !important;
+
+} */
+/* 
+.ui-carousel {
+    width: 100%;
+  }
+
+  .ui-carousel-item {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 250px;
+  }
+
+  .ui-carousel-items{
+    width: 100%;
+  }
+
+  .ui-carousel-viewport{
+    width: 100%;
+  }
+
+ .ui-carousel-header{
+    background-color: #007aff;
+  } */
+
+
+/* .carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-details > .p-grid {
+    border: 1px solid #b3c2ca;
+    border-radius: 3px;
+    margin: 0.3em;
+    text-align: center;
+    padding: 2em 0 2.25em 0;
+}
+.carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-data .car-title {
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 24px;
+}
+.carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-data .car-subtitle {
+    margin: 0.25em 0 2em 0;
+}
+.carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-data button {
+    margin-left: 0.5em;
+}
+.carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-data button:first-child {
+    margin-left: 0;
+}
+.carousel-demo .ui-carousel.custom-carousel .ui-carousel-dot-icon {
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 50%;
+}
+.carousel-demo .ui-carousel.ui-carousel-horizontal .ui-carousel-content .ui-carousel-item.ui-carousel-item-start .car-details > .p-grid {
+    margin-left: 0.6em;
+}
+.carousel-demo .ui-carousel.ui-carousel-horizontal .ui-carousel-content .ui-carousel-item.ui-carousel-item-end .car-details > .p-grid {
+    margin-right: 0.6em;
+} */
+
+
+
+h3{
+    text-align: center;
+}
+
+.img-center{
+    text-align: center;
+    align-self: center;
+}
+
+.img{
+    /* max-width:300px; */
+    /* height:200px; */
+    width: auto;
+    align-self: center;
+}
+.img-recom{
+    max-width: 300px; 
+    max-height: 190px;
+    width: auto;
+    height: auto;
+}
+.img-small{
+    max-width: 270px; 
+    max-height: 150px;
+    width: auto;
+    height: 150px;
+    /* margin-top: 10px; */
+    /* border-radius: 5px 5px 0px 0px; */
+    border-radius: 5px;
+    
+}
+.ui-carousel-item{
+    height: auto;
+}
+
+
+.img-div{
+    /* border: 1px solid #cfcfcf;  */
+    border-radius: 5px;
+    /* margin-right: 2rem; */
+    width: auto;
+}
+
+.btn:focus{
+    box-shadow: 0 0 0 0.2rem rgba(0, 123 , 255, 0.25) ;
+}
+.btn-outline-primary:focus{
+    box-shadow: 0 0 0 0 rgba(0, 123 , 255, 0.5) ;
+}
+.card-out{
+    /* border-top: 1px solid #6c757d; */
+    border: none;
+    height: 150px;
+}

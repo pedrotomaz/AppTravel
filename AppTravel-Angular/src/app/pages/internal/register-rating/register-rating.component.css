@@ -1,0 +1,97 @@
+/* .img-center{
+    text-align: center;
+    align-self: center;
+}
+
+.img{
+    max-width:300px;
+    height:200px;
+    width: auto;
+    align-self: center;
+}
+.img-recom{
+    max-width: 300px; 
+    max-height: 190px;
+    width: auto;
+    height: auto;
+}
+.ui-carousel-item{
+    height: auto;
+}
+
+.div-img{
+    border: 1px solid #cfcfcf; 
+    border-radius: 5px;
+    margin-right: 2rem;
+}
+
+.btn:focus{
+    box-shadow: 0 0 0 0.2rem rgba(0, 123 , 255, 0.25) ;
+}
+.btn-outline-primary:focus{
+    box-shadow: 0 0 0 0 rgba(0, 123 , 255, 0.5) ;
+} */
+
+/* .btn-doc:hover{
+    color: #fff !important;
+} */
+
+
+
+
+
+
+h3{
+    text-align: center;
+}
+
+.img-center{
+    text-align: center;
+    align-self: center;
+}
+
+.img{
+    /* max-width:300px; */
+    /* height:200px; */
+    width: auto;
+    align-self: center;
+}
+.img-recom{
+    max-width: 300px; 
+    max-height: 190px;
+    width: auto;
+    height: auto;
+}
+.img-small{
+    max-width: 270px; 
+    max-height: 150px;
+    width: auto;
+    height: 150px;
+    /* margin-top: 10px; */
+    /* border-radius: 5px 5px 0px 0px; */
+    border-radius: 5px;
+    
+}
+.ui-carousel-item{
+    height: auto;
+}
+
+
+.img-div{
+    /* border: 1px solid #cfcfcf;  */
+    border-radius: 5px;
+    /* margin-right: 2rem; */
+    width: auto;
+}
+
+.btn:focus{
+    box-shadow: 0 0 0 0.2rem rgba(0, 123 , 255, 0.25) ;
+}
+.btn-outline-primary:focus{
+    box-shadow: 0 0 0 0 rgba(0, 123 , 255, 0.5) ;
+}
+.card-out{
+    /* border-top: 1px solid #6c757d; */
+    border: none;
+    height: 150px;
+}

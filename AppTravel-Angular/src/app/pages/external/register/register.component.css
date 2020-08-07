@@ -1,0 +1,6 @@
+:host ::ng-deep .ui-state-active{
+    background-color: #28a745 !important;
+}
+#username{
+    text-transform:uppercase;
+}

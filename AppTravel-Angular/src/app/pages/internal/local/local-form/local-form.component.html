@@ -1,0 +1,252 @@
+
+<br>
+
+<h4>Dados do Local</h4>
+
+<hr>
+
+<!-- Action EDIT/NEW -->
+<div class="" *ngIf="this.usuario != null && this.usuario.isAdmin && this.action != 'view'">
+    <form [formGroup]="formCadastro" (submit)="onSubmitForm()" >
+
+        
+        
+        <div class="row" style="justify-content: space-between;margin: auto;">
+            <!-- Botão de Upload -->
+            <div class="form-group" style="align-self: flex-end;"  *ngIf="this.usuario.isAdmin">
+                <button type="button" class="btn btn-outline-warning btn-with-icon btn-sm btn-doc" (click)="fileInput6.click()">
+                    <i class="pi pi-upload"></i>&nbsp;&nbsp;Carregar Imagem
+                    <input #fileInput6 type="file" (change)="onFileSelected($event)" style="display:none;" accept="images/*"/>
+                </button>
+            </div>
+            <!-- Image Preview -->
+            <div class="form-group div-img" >
+                <!-- <img class="img" id="myimage" [src]='thumbnail' > -->
+                <img class="img" id="myimage" src="assets/images/sem-imagem.png" alt="Sem Imagem" *ngIf="this.formCadastro.get('imagem').value == ''">
+                <img class="img" id="myimage" [src]="formCadastro.get('imagem').value"  >
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <!-- Nome -->
+            <div class="form-group col-xs-12 col-md-9">
+                <label for="nome">Nome</label>
+                <input type="text" class="form-control" id='nome' formControlName="nome" 
+                    [class.is-invalid]="formCadastro.get('nome').errors?.required && formCadastro.get('nome').touched" autocomplete="off">
+                <div class="invalid-feedback" *ngIf="formCadastro.get('nome').errors?.required && formCadastro.get('nome').touched">
+                    Este campo é obrigatório
+                </div>
+            </div>
+
+            <!-- Telefone -->
+            <div class="form-group col-xs-12 col-md-3">
+                <!-- <div class="col-xs-12 col-md-5 "> -->
+                    <label for="telefone">Telefone</label>
+                    <input type="text" class="form-control" id='telefone' formControlName="telefone" maxlength="14"
+                    [class.is-invalid]="formCadastro.get('telefone').errors?.required && formCadastro.get('telefone').touched" autocomplete="off">
+                    <div class="invalid-feedback" *ngIf="formCadastro.get('telefone').errors?.required && formCadastro.get('telefone').touched">
+                    Este campo é obrigatório
+                    </div>
+            <!-- </div> -->
+            </div>
+        </div>
+
+        <div class="form-row"> 
+            <!-- Cep -->
+            <div class="form-group col-xs-12 col-md-2">
+                <label for="cep">Cep</label>
+                <input type="text" class="form-control" id='cep' formControlName="cep" 
+                [class.is-invalid]="formCadastro.get('cep').errors?.required && formCadastro.get('cep').touched" autocomplete="off">
+                <div class="invalid-feedback" *ngIf="formCadastro.get('cep').errors?.required && formCadastro.get('cep').touched">
+                    Este campo é obrigatório
+                </div>
+            </div>
+
+            <!-- rua -->
+            <div class="form-group col-xs-12 col-md-6">
+                <label for="rua">Rua</label>
+                <input type="text" class="form-control" id='rua' formControlName="rua" 
+                [class.is-invalid]="formCadastro.get('rua').errors?.required && formCadastro.get('rua').touched" autocomplete="off">
+                <div class="invalid-feedback" *ngIf="formCadastro.get('rua').errors?.required && formCadastro.get('rua').touched">
+                    Este campo é obrigatório
+                </div>
+            </div>
+
+            <!-- numero -->
+            <div class="form-group col-xs-12 col-md-2">
+                <!-- <div class="col-xs-12 col-md-5 mb-3"> -->
+                    <label for="numero">Número</label>
+                    <input type="text" class="form-control" id='numero' formControlName="numero" 
+                    [class.is-invalid]="formCadastro.get('numero').errors?.required && formCadastro.get('numero').touched" autocomplete="off">
+                    <div class="invalid-feedback" *ngIf="formCadastro.get('numero').errors?.required && formCadastro.get('numero').touched">
+                    Este campo é obrigatório
+                    </div>
+            <!-- </div> -->
+            </div>
+
+            <!-- complemento -->
+            <div class="form-group col-xs-12 col-md-2">
+                <!-- <div class="col-xs-12 col-md-5 mb-3"> -->
+                    <label for="complemento">Complemento</label>
+                    <input type="text" class="form-control" id='complemento' formControlName="complemento" 
+                     autocomplete="off">                    
+                <!-- </div> -->
+            </div>
+        </div>
+
+        <div class="form-row">
+            <!-- bairro -->
+            <div class="form-group col-xs-12 col-md-3">
+                <!-- <div class="col-xs-12 col-md-5 mb-3"> -->
+                    <label for="bairro">Bairro</label>
+                    <input type="text" class="form-control" id='bairro' formControlName="bairro" 
+                        [class.is-invalid]="formCadastro.get('bairro').errors?.required && formCadastro.get('bairro').touched" autocomplete="off">
+                    <div class="invalid-feedback" *ngIf="formCadastro.get('bairro').errors?.required && formCadastro.get('bairro').touched">
+                        Este campo é obrigatório
+                    </div>
+                <!-- </div> -->
+            </div>
+
+            <!-- cidade -->
+            <div class="form-group col-xs-12 col-md-3">
+                <!-- <div class="col-xs-12 col-md-5 mb-3"> -->
+                    <label for="cidade">Cidade</label>
+                    <input type="text" class="form-control" id='cidade' formControlName="cidade" 
+                        [class.is-invalid]="formCadastro.get('cidade').errors?.required && formCadastro.get('cidade').touched" autocomplete="off">
+                    <div class="invalid-feedback" *ngIf="formCadastro.get('cidade').errors?.required && formCadastro.get('cidade').touched">
+                        Este campo é obrigatório
+                    </div>
+                <!-- </div> -->
+            </div>
+
+            <!-- estado -->
+            <div class="form-group col-xs-12 col-md-3">
+                <!-- <div class="col-xs-12 col-md-5 mb-3"> -->
+                    <label for="uf">Estado</label>
+                    <input type="text" class="form-control" id='uf' formControlName="uf" 
+                        [class.is-invalid]="formCadastro.get('uf').errors?.required && formCadastro.get('uf').touched" autocomplete="off">
+                    <div class="invalid-feedback" *ngIf="formCadastro.get('uf').errors?.required && formCadastro.get('uf').touched">
+                        Este campo é obrigatório
+                    </div>
+                <!-- </div> -->
+            </div>
+
+            <!-- pais -->
+            <div class="form-group col-xs-12 col-md-3">
+                <!-- <div class="col-xs-12 col-md-5 mb-3"> -->
+                    <label for="pais">País</label>
+                    <input type="text" class="form-control" id='pais' formControlName="pais" 
+                        [class.is-invalid]="formCadastro.get('pais').errors?.required && formCadastro.get('pais').touched" autocomplete="off">
+                    <div class="invalid-feedback" *ngIf="formCadastro.get('pais').errors?.required && formCadastro.get('pais').touched">
+                        Este campo é obrigatório
+                    </div>
+                <!-- </div> -->
+            </div>
+        </div>
+
+        <div class="form-row">
+            <!-- descricao -->
+            <div class="form-group col-xs-12 col-md-12">              
+                <label for="descricao">Descrição</label>
+                <textarea type="text" class="form-control" id='descricao' formControlName="descricao" maxlength="300"
+                    [class.is-invalid]="formCadastro.get('descricao').errors?.required && formCadastro.get('descricao').touched" autocomplete="off">
+                </textarea>
+                <div class="invalid-feedback" *ngIf="formCadastro.get('descricao').errors?.required && formCadastro.get('descricao').touched">
+                    Este campo é obrigatório
+                </div>              
+            </div>
+        </div>
+
+        <!-- Botões -->
+        <div class="row" style="justify-content: space-between;margin: auto;">
+            <div class=form-group>
+                <a class="btn btn-outline-danger btn-sm" style="margin-right: 10px;" routerLink="/main/local"><i class="pi pi-arrow-left"></i>&nbsp;&nbsp;Voltar</a>
+                <button class="btn btn-outline-primary btn-sm" type="submit" ><i class="pi pi-check"></i>&nbsp;&nbsp;Salvar</button>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+
+
+<!-- Action VIEW -->
+<div class="" *ngIf="this.action == 'view'">
+    <form [formGroup]="formCadastro" (submit)="onSubmitForm()" >
+
+        
+        
+        <div class="row" style="justify-content: space-between;margin: auto;">
+            <!-- Botão de Upload -->
+            <div class="form-group  col-md-7" style="align-self: flex-end;margin: auto;"  >
+               
+
+                <div class="form-group" formGroupName="avaliacao" *ngIf="this.usuario != null">
+                    <p-rating *ngIf="this.usuario != null"  formControlName="nota" [cancel]="false" (onRate)="onRate($event, this.formCadastro.get('avaliacao').value != null ? this.formCadastro.get('avaliacao.id').value : '', this.formCadastro.get('id').value )" ></p-rating>
+                    <button *ngIf="this.formCadastro.get('avaliacao').value == null" class="btn btn-sm btn-outline-primary" (click)="setInterestList(localId)" type="button">Quero Conhecer</button> 
+                </div>
+                <!-- <div class="form-group"> -->
+                    <!-- Nome -->
+                    <p class="control-label "><strong>Nome:</strong> {{formCadastro.get('nome').value}}</p> 
+                    <!-- Telefone -->
+                    <p class="control-label "><strong>Telefone:</strong> {{formCadastro.get('telefone').value}}</p>
+                    <!-- Cep -->
+                    <p class="control-label "><strong>Cep:</strong> {{formCadastro.get('cep').value}}</p>
+                    <!-- Endereço -->
+                    <p class="control-label "><strong>Endereço:</strong> {{formCadastro.get('rua').value}}, {{formCadastro.get('numero').value}} {{formCadastro.get('complemento').value}} - {{formCadastro.get('bairro').value}}</p>
+                    <!-- cidade - estado - país -->
+                    <p class="control-label "><strong>Localidade:</strong>  {{formCadastro.get('cidade').value}}, {{formCadastro.get('uf').value}} - {{formCadastro.get('pais').value}}</p>
+                    <!-- descricao -->
+                    <p class="control-label "><strong>Descrição:</strong> {{formCadastro.get('descricao').value}}</p>
+                <!-- </div> -->
+
+            </div>
+            <!-- Image Preview -->
+            <div class="form-group div-img" >
+                <!-- <img class="img" id="myimage" [src]='thumbnail' > -->
+                <img class="img" id="myimage" src="assets/images/sem-imagem.png" alt="Sem Imagem" *ngIf="this.formCadastro.get('imagem').value == null || this.formCadastro.get('imagem').value == ''">
+                <img class="img" id="myimage" [src]="formCadastro.get('imagem').value"  >
+            </div>
+        </div>
+
+
+        <!-- <div class="form-group"> -->
+            <!-- Nome -->
+            <!-- <label class="control-label col-md-12 "><strong>Nome:</strong> {{formCadastro.get('nome').value}}</label>  -->
+            <!-- Telefone -->
+            <!-- <label class="control-label col-md-12"><strong>Telefone:</strong> {{formCadastro.get('telefone').value}}</label> -->
+            <!-- Cep -->
+            <!-- <label class="control-label col-md-12"><strong>Cep:</strong> {{formCadastro.get('cep').value}}</label> -->
+            <!-- Endereço -->
+            <!-- <label class="control-label col-md-12"><strong>Endereço:</strong> {{formCadastro.get('rua').value}}, {{formCadastro.get('numero').value}} {{formCadastro.get('complemento').value}} - {{formCadastro.get('bairro').value}}</label> -->
+            <!-- cidade - estado - país -->
+            <!-- <label class="control-label col-md-12"><strong>Localidade:</strong>  {{formCadastro.get('cidade').value}}, {{formCadastro.get('uf').value}} - {{formCadastro.get('pais').value}}</label> -->
+            <!-- descricao -->
+            <!-- <label class="control-label col-md-12"><strong>Descrição:</strong> {{formCadastro.get('descricao').value}}</label> -->
+        <!-- </div> -->
+
+
+          <hr>
+
+        <!-- Botões -->
+        <div class="row" style="justify-content: space-between;margin: auto;">
+            <div class=form-group>
+                <a *ngIf="this.usuario != null && !this.isInitalRating" class="btn btn-outline-danger btn-sm" style="margin-right: 10px;" routerLink="/main/home"><i class="pi pi-arrow-left"></i>&nbsp;&nbsp;Voltar</a>
+                <a *ngIf="this.usuario == null" class="btn btn-outline-danger btn-sm" style="margin-right: 10px;" routerLink="/home"><i class="pi pi-arrow-left"></i>&nbsp;&nbsp;Voltar</a>
+                <a *ngIf="this.isInitalRating" class="btn btn-outline-danger btn-sm" style="margin-right: 10px;" routerLink="/main/rating"><i class="pi pi-arrow-left"></i>&nbsp;&nbsp;Voltar</a>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+
+
+
+
+<!-- <div *ngIf="this.usuario == null || (!this.usuario.isAdmin && this.action != 'view')">
+    <div class="alert alert-danger">
+      <strong>Atenção!</strong> Você não tem permissão para acessar esta área.
+    </div>
+</div> -->

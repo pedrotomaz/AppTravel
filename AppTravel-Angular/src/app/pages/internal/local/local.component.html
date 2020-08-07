@@ -1,0 +1,62 @@
+<br>
+
+<h2>Lista de Locais</h2>
+
+<hr>
+
+<div *ngIf="this.usuario.isAdmin">
+  <!-- <p-table #dt [columns]="cols" [value]="locais" [(selection)]="selectedlocal" dataKey="id" styleClass="table table-striped table-responsive"  [rowHover]="true"
+      [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"  
+      [paginator]="true" currentPageReportTemplate="Mostrando {first} até {last} de {totalRecords} Locais" 
+      [filterDelay]="0" [globalFilterFields]="['nome','cidade','uf','telefone']" > -->
+  <p-table #dt [columns]="cols" [value]="locais" dataKey="id" styleClass="table table-striped table-responsive"  [rowHover]="true"
+      [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"  
+      [paginator]="true" currentPageReportTemplate="Mostrando {first} até {last} de {totalRecords} Locais" 
+      [filterDelay]="0" [globalFilterFields]="['nome','cidade','uf','telefone']" >
+      
+      <ng-template pTemplate="caption">
+          <div class="row" style="justify-content: space-between;margin: auto;">
+            <button class="btn btn-outline-primary" type="button" pButton icon="pi pi-plus" (click)="onClickAdd()" label="Adicionar"></button>
+            <input pInputText type="text" class="form-control" style="width: auto;" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Pesquisar" />
+          </div>
+      </ng-template>
+      
+      <ng-template pTemplate="header" let-columns>
+        
+          <tr>
+              <th hidden  pSortableColumn="id" >Id <p-sortIcon field="id"></p-sortIcon></th>
+              <th pSortableColumn="nome" style="width:40%">Local <p-sortIcon field="nome"></p-sortIcon></th>
+              <th pSortableColumn="cidade" style="width:25%">Cidade <p-sortIcon field="cidade"></p-sortIcon></th>
+              <th pSortableColumn="uf" style="width:10%">Estado <p-sortIcon field="uf"></p-sortIcon></th>
+              <th pSortableColumn="telefone" style="width:15%">Telefone <p-sortIcon field="telefone"></p-sortIcon></th>
+              <th style="width:10%;"></th>
+          </tr>
+          
+
+      </ng-template>
+
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+            <td *ngFor="let col of columns" [hidden]="col.field=='id'">
+                {{rowData[col.field]}}
+            </td>
+            <td>
+              <button pButton  (click)="selectRow(rowData)" label="Editar" icon="pi pi-pencil"></button>
+            </td>
+        </tr>
+      </ng-template>
+    
+      <ng-template pTemplate="emptymessage">
+          <tr>
+              <td colspan="8" style="text-align:left">Nenhum local encontrado</td>
+          </tr>
+      </ng-template>
+
+  </p-table>
+</div>
+
+<div *ngIf="this.usuario == null || !this.usuario.isAdmin">
+    <div class="alert alert-danger">
+      <strong>Atenção!</strong> Você não tem permissão para acessar esta área.
+    </div>
+</div>

@@ -1,0 +1,539 @@
+<br>
+<h2>Locais Turísticos</h2>
+
+<!-- BEGIN RECOMENDAÇÕES-->
+<div *ngIf="this.usuario!=null && this.locaisHint.length > 3">
+
+  <hr>
+  <!-- RECOMENDAÇÕES PARA VOCÊ -->
+  <p-carousel [value]="this.locaisHint" [numVisible]="4" [numScroll]="1" [responsiveOptions]="responsiveOptions"
+    [autoplayInterval]="5000" [circular]="true">
+
+    <p-header>
+      <h3>Recomendados para Você</h3>
+    </p-header>
+
+
+    <ng-template let-local pTemplate="item">
+
+      <div class="card border-secondary mb-3 card-out"
+        style="height: 270px;margin-left: 1rem;margin-right: 1rem; text-align: center;">
+        <div class="img img-div">
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" [src]="local.imagem"
+              *ngIf="local.imagem != null && local.imagem != ''"></a>
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" src="assets/images/sem-imagem.png"
+              alt="Sem Imagem" *ngIf="local.imagem == null || local.imagem == ''"></a>
+        </div>
+        <div class="card-body text-secondary card-out">
+          <h6 class="card-title">{{ local.nome }}</h6>
+          <!-- <p class="card-text">{{ local.descricao }}</p> -->
+        </div>
+
+        <div class="card-footer bg-transparent border-secondary"
+          style="display: flex;justify-content: space-between;padding-left: 10px;padding-right: 10px;align-items: center;">
+          <p-rating [ngModel]="local.avaliacao != null ? local.avaliacao.nota : 0" [cancel]="false" readonly="true"
+            disabled="true"></p-rating>
+          <button class="btn btn-sm btn-outline-primary" (click)="setInterestList(local.id)" type="button">Quero
+            Conhecer</button>
+          <!-- <button *ngIf="local.avaliacao == null" class="btn btn-sm btn-outline-primary" (click)="setInterestList(local.id)" type="button">Quero Conhecer</button> -->
+        </div>
+      </div>
+
+    </ng-template>
+
+
+  </p-carousel>
+
+  <hr>
+</div>
+
+<div *ngIf="this.usuario!=null && this.locaisHint.length == 3">
+
+  <hr>
+  <!-- RECOMENDAÇÕES PARA VOCÊ -->
+  <p-carousel [value]="this.locaisHint" [numVisible]="3" [numScroll]="1" [responsiveOptions]="responsiveOptions"
+    [autoplayInterval]="5000" [circular]="true">
+
+    <p-header>
+      <h3>Recomendados para Você</h3>
+    </p-header>
+
+
+    <ng-template let-local pTemplate="item">
+
+      <div class="card border-secondary mb-3 card-out"
+        style="display: flex;margin: auto;height: 270px;text-align: center;max-width: 270px;width: auto;">
+        <div class="img img-div">
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" [src]="local.imagem"
+              *ngIf="local.imagem != null && local.imagem != ''"></a>
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" src="assets/images/sem-imagem.png"
+              alt="Sem Imagem" *ngIf="local.imagem == null || local.imagem == ''"></a>
+        </div>
+        <div class="card-body text-secondary card-out">
+          <h6 class="card-title">{{ local.nome }}</h6>
+        </div>
+
+        <div class="card-footer bg-transparent border-secondary"
+          style="display: flex;justify-content: space-between;padding-left: 10px;padding-right: 10px;align-items: center;">
+          <p-rating [ngModel]="local.avaliacao != null ? local.avaliacao.nota : 0" [cancel]="false" readonly="true"
+            disabled="true"></p-rating>
+          <button class="btn btn-sm btn-outline-primary" (click)="setInterestList(local.id)" type="button">Quero
+            Conhecer</button>
+        </div>
+      </div>
+
+    </ng-template>
+
+
+  </p-carousel>
+
+  <hr>
+</div>
+
+<div *ngIf="this.usuario!=null && this.locaisHint.length == 2">
+
+  <hr>
+  <!-- RECOMENDAÇÕES PARA VOCÊ -->
+  <p-carousel [value]="this.locaisHint" [numVisible]="2" [numScroll]="1" [responsiveOptions]="responsiveOptions"
+    [autoplayInterval]="5000" [circular]="true">
+
+    <p-header>
+      <h3>Recomendados para Você</h3>
+    </p-header>
+
+
+    <ng-template let-local pTemplate="item">
+
+      <div class="card border-secondary mb-3 card-out"
+        style="display: flex;margin: auto;height: 270px;text-align: center;max-width: 270px;width: auto;">
+        <div class="img img-div">
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" [src]="local.imagem"
+              *ngIf="local.imagem != null && local.imagem != ''"></a>
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" src="assets/images/sem-imagem.png"
+              alt="Sem Imagem" *ngIf="local.imagem == null || local.imagem == ''"></a>
+        </div>
+        <div class="card-body text-secondary card-out">
+          <h6 class="card-title">{{ local.nome }}</h6>
+          <!-- <p class="card-text">{{ local.descricao }}</p> -->
+        </div>
+
+        <div class="card-footer bg-transparent border-secondary"
+          style="justify-content: space-between;padding-left: 10px;padding-right: 10px;align-items: center;text-align: center;align-self: center;display: flex;">
+          <p-rating *ngIf="this.usuario != null" [ngModel]="local.avaliacao != null ? local.avaliacao.nota : 0"
+            [cancel]="false" (onRate)="onRate($event, local.avaliacao != null ? local.avaliacao.id : '', local.id )">
+          </p-rating>
+          <button *ngIf="local.avaliacao == null && this.usuario != null" class="btn btn-sm btn-outline-primary"
+            style="margin-left: 1rem;" (click)="setInterestList(local.id)" type="button">Quero Conhecer</button>
+        </div>
+
+      </div>
+
+
+
+    </ng-template>
+
+
+  </p-carousel>
+
+  <hr>
+</div>
+
+<div *ngIf="this.usuario!=null && this.locaisHint.length == 1">
+
+  <hr>
+  <!-- RECOMENDAÇÕES PARA VOCÊ -->
+  <p-carousel [value]="this.locaisHint" [numVisible]="1" [numScroll]="1" [responsiveOptions]="responsiveOptions"
+    [autoplayInterval]="5000" [circular]="true">
+
+    <p-header>
+      <h3>Recomendados para Você</h3>
+    </p-header>
+
+
+    <ng-template let-local pTemplate="item">
+
+      <div class="card border-secondary mb-3 card-out"
+        style="height: 270px;margin-left: 1rem;margin-right: 1rem; text-align: center;">
+        <div class="img img-div">
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" [src]="local.imagem"
+              *ngIf="local.imagem != null && local.imagem != ''"></a>
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" src="assets/images/sem-imagem.png"
+              alt="Sem Imagem" *ngIf="local.imagem == null || local.imagem == ''"></a>
+        </div>
+        <div class="card-body text-secondary card-out">
+          <h6 class="card-title">{{ local.nome }}</h6>
+        </div>
+
+        <div class="card-footer bg-transparent border-secondary"
+          style="display: flex;justify-content: space-between;padding-left: 10px;padding-right: 10px;align-items: center;">
+          <p-rating [ngModel]="local.avaliacao != null ? local.avaliacao.nota : 0" [cancel]="false" readonly="true"
+            disabled="true"></p-rating>
+          <button class="btn btn-sm btn-outline-primary" style="margin-left: 1rem;" (click)="setInterestList(local.id)"
+            type="button">Quero
+            Conhecer</button>
+        </div>
+      </div>
+
+    </ng-template>
+
+
+  </p-carousel>
+
+  <hr>
+</div>
+<!-- END RECOMENDAÇÕES -->
+
+
+
+<!-- BEGIN LISTA INTERESSE -->
+<div *ngIf="this.visibleInterest > 3">
+  
+  <!-- LISTA DE INTERESSES -->
+  <p-carousel [value]="this.lstInteresses" [numVisible]="4" [numScroll]="1"
+    [responsiveOptions]="responsiveOptionsInterest" [circular]="true" [autoplayInterval]="5000">
+
+    <p-header>
+      <h3>Lista de Interesses</h3>
+    </p-header>
+
+
+    <ng-template let-local pTemplate="item">
+
+      <div class="card border-secondary mb-3 card-out"
+        style="height: 270px;margin-left: 1rem;margin-right: 1rem; text-align: center;max-width: 270px;width: auto;">
+        <div class="img img-div">
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" [src]="local.imagem"
+              *ngIf="local.imagem != null && local.imagem != ''"></a>
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" src="assets/images/sem-imagem.png"
+              alt="Sem Imagem" *ngIf="local.imagem == null || local.imagem == ''"></a>
+        </div>
+        <div class="card-body text-secondary card-out">
+          <h6 class="card-title">{{ local.nome }}</h6>
+        </div>
+
+        <div class="card-footer bg-transparent border-secondary"
+          style="display: flex;justify-content: space-between;padding-left: 10px;padding-right: 10px;align-items: center;">
+          <p-rating *ngIf="this.usuario != null" [ngModel]="local.avaliacao != null ? local.avaliacao.nota : 0"
+            [cancel]="false" (onRate)="onRate($event, local.avaliacao != null ? local.avaliacao.id : '', local.id )">
+          </p-rating>
+        </div>
+      </div>
+
+    </ng-template>
+
+
+  </p-carousel>
+
+  <hr>
+</div>
+
+<div *ngIf="this.visibleInterest == 3">
+  <!-- LISTA DE INTERESSES -->
+  <p-carousel [value]="this.lstInteresses" [numVisible]="3" [numScroll]="1"
+    [responsiveOptions]="responsiveOptionsInterest" [circular]="true">
+
+    <p-header>
+      <h3>Lista de Interesses</h3>
+    </p-header>
+
+
+    <ng-template let-local pTemplate="item">
+
+      <div class="card border-secondary mb-3 card-out"
+        style="display: flex;margin: auto;height: 270px;text-align: center;max-width: 270px;width: auto;">
+        <div class="img img-div">
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" [src]="local.imagem"
+              *ngIf="local.imagem != null && local.imagem != ''"></a>
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" src="assets/images/sem-imagem.png"
+              alt="Sem Imagem" *ngIf="local.imagem == null || local.imagem == ''"></a>
+        </div>
+        <div class="card-body text-secondary card-out">
+          <h6 class="card-title">{{ local.nome }}</h6>
+        </div>
+
+        <div class="card-footer bg-transparent border-secondary"
+          style="display: flex;justify-content: space-between;padding-left: 10px;padding-right: 10px;align-items: center;">
+          <p-rating *ngIf="this.usuario != null" [ngModel]="local.avaliacao != null ? local.avaliacao.nota : 0"
+            [cancel]="false" (onRate)="onRate($event, local.avaliacao != null ? local.avaliacao.id : '', local.id )">
+          </p-rating>
+        </div>
+      </div>
+
+    </ng-template>
+
+
+  </p-carousel>
+
+  <hr>
+</div>
+
+<div *ngIf="this.visibleInterest == 2">
+  <!-- LISTA DE INTERESSES -->
+  <p-carousel [value]="this.lstInteresses" [numVisible]="2" [numScroll]="1"
+    [responsiveOptions]="responsiveOptionsInterest" [circular]="true">
+
+    <p-header>
+      <h3>Lista de Interesses</h3>
+    </p-header>
+
+
+    <ng-template let-local pTemplate="item">
+
+      <div class="card border-secondary mb-3 card-out"
+        style="display: flex;margin: auto;height: 270px;text-align: center;max-width: 270px;width: auto;">
+        <div class="img img-div">
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" [src]="local.imagem"
+              *ngIf="local.imagem != null && local.imagem != ''"></a>
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" src="assets/images/sem-imagem.png"
+              alt="Sem Imagem" *ngIf="local.imagem == null || local.imagem == ''"></a>
+        </div>
+        <div class="card-body text-secondary card-out">
+          <h6 class="card-title">{{ local.nome }}</h6>
+        </div>
+
+        <div class="card-footer bg-transparent border-secondary"
+          style="justify-content: space-between;padding-left: 10px;padding-right: 10px;align-items: center;text-align: center;align-self: center;display: flex;">
+          <p-rating *ngIf="this.usuario != null" [ngModel]="local.avaliacao != null ? local.avaliacao.nota : 0"
+            [cancel]="false" (onRate)="onRate($event, local.avaliacao != null ? local.avaliacao.id : '', local.id )">
+          </p-rating>
+        </div>
+
+      </div>
+
+    </ng-template>
+
+
+  </p-carousel>
+
+  <hr>
+</div>
+
+<div *ngIf="this.visibleInterest == 1">
+  <!-- LISTA DE INTERESSES -->
+  <p-carousel [value]="this.lstInteresses" [numVisible]="1" [numScroll]="1"
+    [responsiveOptions]="responsiveOptionsInterest" [circular]="true" [autoplayInterval]="5000">
+
+    <p-header>
+      <h3>Lista de Interesses</h3>
+    </p-header>
+
+
+    <ng-template let-local pTemplate="item">
+
+      <div class="card border-secondary mb-3 card-out"
+        style="height: 270px;margin-left: 1rem;margin-right: 1rem; text-align: center;">
+        <div class="img img-div">
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" [src]="local.imagem"
+              *ngIf="local.imagem != null && local.imagem != ''"></a>
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" src="assets/images/sem-imagem.png"
+              alt="Sem Imagem" *ngIf="local.imagem == null || local.imagem == ''"></a>
+        </div>
+        <div class="card-body text-secondary card-out">
+          <h6 class="card-title">{{ local.nome }}</h6>
+        </div>
+
+        <div class="card-footer bg-transparent border-secondary"
+          style="justify-content: space-between;padding-left: 10px;padding-right: 10px;align-items: center;text-align: center;align-self: center;display: flex;">
+          <p-rating *ngIf="this.usuario != null" [ngModel]="local.avaliacao != null ? local.avaliacao.nota : 0"
+            [cancel]="false" (onRate)="onRate($event, local.avaliacao != null ? local.avaliacao.id : '', local.id )">
+          </p-rating>
+        </div>
+      </div>
+
+    </ng-template>
+
+
+  </p-carousel>
+
+  <hr>
+
+</div>
+<!-- END LISTA INTERESSE -->
+
+
+
+<!-- FILTRO TODOS LOCAIS -->
+<div class="col-xs-12 col-sm-12 col-md-12">
+  <p-dropdown 
+    [options]="this.cidadesFiltro" 
+    [(ngModel)]="selectedCidadeFiltro" 
+    editable="true" 
+    filter="true"
+    (onChange)=onFilter($event)>
+  </p-dropdown>
+</div>
+
+
+<!-- BEGIN TODOS LOCAIS -->
+<div *ngIf="this.visible > 3">
+  <!-- TODOS LOCAIS -->
+  <p-carousel [value]="this.locaisFiltro" [numVisible]="4" [numScroll]="1" [responsiveOptions]="responsiveOptions"
+    [circular]="true" [autoplayInterval]="5000">
+
+    <p-header>
+      <h3>Todos Locais</h3>
+    </p-header>
+
+
+    <ng-template let-local pTemplate="item">
+
+      <div class="card border-secondary mb-3 card-out"
+        style="height: 270px;margin-left: 1rem;margin-right: 1rem; text-align: center;">
+        <div class="img img-div">
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" [src]="local.imagem"
+              *ngIf="local.imagem != null && local.imagem != ''"></a>
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" src="assets/images/sem-imagem.png"
+              alt="Sem Imagem" *ngIf="local.imagem == null || local.imagem == ''"></a>
+        </div>
+        <div class="card-body text-secondary card-out">
+          <h6 class="card-title">{{ local.nome }}</h6>
+          <!-- <p class="card-text">{{ local.descricao }}</p> -->
+        </div>
+
+        <div class="card-footer bg-transparent border-secondary"
+          style="display: flex;justify-content: space-between;padding-left: 10px;padding-right: 10px;align-items: center;">
+          <p-rating *ngIf="this.usuario != null" [ngModel]="local.avaliacao != null ? local.avaliacao.nota : 0"
+            [cancel]="false" (onRate)="onRate($event, local.avaliacao != null ? local.avaliacao.id : '', local.id )">
+          </p-rating>
+          <button *ngIf="local.avaliacao == null && this.usuario != null" class="btn btn-sm btn-outline-primary"
+            (click)="setInterestList(local.id)" type="button">Quero Conhecer</button>
+        </div>
+      </div>
+
+    </ng-template>
+
+
+  </p-carousel>
+</div>
+
+<div *ngIf="this.visible == 3">
+  <!-- TODOS LOCAIS -->
+  <p-carousel [value]="this.locaisFiltro" [numVisible]="3" [numScroll]="1" [responsiveOptions]="responsiveOptions"
+    [circular]="true" [autoplayInterval]="5000">
+
+    <p-header>
+      <h3>Todos Locais</h3>
+    </p-header>
+
+
+    <ng-template let-local pTemplate="item">
+
+      <div class="card border-secondary mb-3 card-out"
+        style="display: flex;margin: auto;height: 270px;text-align: center;max-width: 270px;width: auto;">
+        <div class="img img-div">
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" [src]="local.imagem"
+              *ngIf="local.imagem != null && local.imagem != ''"></a>
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" src="assets/images/sem-imagem.png"
+              alt="Sem Imagem" *ngIf="local.imagem == null || local.imagem == ''"></a>
+        </div>
+        <div class="card-body text-secondary card-out">
+          <h6 class="card-title">{{ local.nome }}</h6>
+        </div>
+
+        <div class="card-footer bg-transparent border-secondary"
+          style="justify-content: space-between;padding-left: 10px;padding-right: 10px;align-items: center;text-align: center;align-self: center;display: flex;">
+          <p-rating *ngIf="this.usuario != null" [ngModel]="local.avaliacao != null ? local.avaliacao.nota : 0"
+            [cancel]="false" (onRate)="onRate($event, local.avaliacao != null ? local.avaliacao.id : '', local.id )">
+          </p-rating>
+          <button *ngIf="local.avaliacao == null && this.usuario != null" class="btn btn-sm btn-outline-primary"
+            style="margin-left: 1rem;" (click)="setInterestList(local.id)" type="button">Quero Conhecer</button>
+        </div>
+
+      </div>
+
+    </ng-template>
+
+
+  </p-carousel>
+</div>
+
+<div *ngIf="this.visible == 2">
+  <!-- TODOS LOCAIS -->
+  <p-carousel [value]="this.locaisFiltro" [numVisible]="2" [numScroll]="1" [responsiveOptions]="responsiveOptions"
+    [circular]="true" [autoplayInterval]="5000">
+
+    <p-header>
+      <h3>Todos Locais</h3>
+    </p-header>
+
+
+    <ng-template let-local pTemplate="item">
+
+
+      <div class="card border-secondary mb-3 card-out"
+        style="display: flex;margin: auto;height: 270px;text-align: center;max-width: 270px;width: auto;">
+        <div class="img img-div">
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" [src]="local.imagem"
+              *ngIf="local.imagem != null && local.imagem != ''"></a>
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" src="assets/images/sem-imagem.png"
+              alt="Sem Imagem" *ngIf="local.imagem == null || local.imagem == ''"></a>
+        </div>
+        <div class="card-body text-secondary card-out">
+          <h6 class="card-title">{{ local.nome }}</h6>
+          <!-- <p class="card-text">{{ local.descricao }}</p> -->
+        </div>
+
+        <div class="card-footer bg-transparent border-secondary"
+          style="justify-content: space-between;padding-left: 10px;padding-right: 10px;align-items: center;text-align: center;align-self: center;display: flex;">
+          <p-rating *ngIf="this.usuario != null" [ngModel]="local.avaliacao != null ? local.avaliacao.nota : 0"
+            [cancel]="false" (onRate)="onRate($event, local.avaliacao != null ? local.avaliacao.id : '', local.id )">
+          </p-rating>
+          <button *ngIf="local.avaliacao == null && this.usuario != null" class="btn btn-sm btn-outline-primary"
+            style="margin-left: 1rem;" (click)="setInterestList(local.id)" type="button">Quero Conhecer</button>
+        </div>
+
+      </div>
+
+
+    </ng-template>
+
+
+  </p-carousel>
+</div>
+
+<div *ngIf="this.visible == 1">
+  <!-- TODOS LOCAIS -->
+  <p-carousel [value]="this.locaisFiltro" [numVisible]="1" [numScroll]="1" [responsiveOptions]="responsiveOptions"
+    [circular]="true" [autoplayInterval]="5000">
+
+    <p-header>
+      <h3>Todos Locais</h3>
+    </p-header>
+
+
+    <ng-template let-local pTemplate="item">
+
+      <div class="card border-secondary mb-3 card-out"
+        style="height: 270px;margin-left: 1rem;margin-right: 1rem; text-align: center;">
+        <div class="img img-div">
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" [src]="local.imagem"
+              *ngIf="local.imagem != null && local.imagem != ''"></a>
+          <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" src="assets/images/sem-imagem.png"
+              alt="Sem Imagem" *ngIf="local.imagem == null || local.imagem == ''"></a>
+        </div>
+        <div class="card-body text-secondary card-out">
+          <h6 class="card-title">{{ local.nome }}</h6>
+        </div>
+
+        <div class="card-footer bg-transparent border-secondary" style="justify-content: space-between;
+        padding-left: 10px;
+        padding-right: 10px;
+        align-items: center;
+        text-align: center;
+        align-self: center;
+        display: flex;">
+          <p-rating *ngIf="this.usuario != null" [ngModel]="local.avaliacao != null ? local.avaliacao.nota : 0"
+            [cancel]="false" (onRate)="onRate($event, local.avaliacao != null ? local.avaliacao.id : '', local.id )">
+          </p-rating>
+          <button *ngIf="local.avaliacao == null && this.usuario != null" class="btn btn-sm btn-outline-primary"
+            style="margin-left: 1rem;" (click)="setInterestList(local.id)" type="button">Quero Conhecer</button>
+        </div>
+      </div>
+
+    </ng-template>
+
+  </p-carousel>
+
+</div>
+<hr>
+<!-- END TODOS LOCAIS -->

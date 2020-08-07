@@ -1,0 +1,91 @@
+<br>
+
+<h4>Dados do Usuário</h4>
+
+<hr>
+
+<form [formGroup]="formCadastro" (submit)="onSubmitForm()" >
+    <div class="" *ngIf="this.usuario != null">
+        
+        <div class="form-row">
+            <!-- Nome -->
+            <div class="form-group col-xs-12 col-md-9">
+                <label for="nome">Nome</label>
+                <input type="text" class="form-control" id='nome' formControlName="nome" 
+                    [class.is-invalid]="formCadastro.get('nome').errors?.required && formCadastro.get('nome').touched" autocomplete="off">
+                <div class="invalid-feedback" *ngIf="formCadastro.get('nome').errors?.required && formCadastro.get('nome').touched">
+                    Este campo é obrigatório
+                </div>
+            </div>
+
+            <!-- Username -->
+            <div class="form-group col-xs-12 col-md-3">
+                <label for="username">Username</label>
+                <input type="text" class="form-control text-uppercase"  formControlName="username" 
+                    [class.is-invalid]="formCadastro.get('username').errors?.required && formCadastro.get('username').touched" autocomplete="off">
+                <div class="invalid-feedback" *ngIf="formCadastro.get('username').errors?.required && formCadastro.get('username').touched">
+                    Este campo é obrigatório
+                </div>
+            </div>
+        </div>
+
+        
+
+        <!-- Botões -->
+        <div class="row" style="justify-content: space-between;margin: auto;">
+            <div class=form-group>
+                <a *ngIf="!this.usuario.isAdmin" class="btn btn-outline-danger btn-sm" style="margin-right: 10px;" routerLink="/main/home"><i class="pi pi-arrow-left"></i>&nbsp;&nbsp;Voltar</a>
+                <a *ngIf="this.usuario.isAdmin" class="btn btn-outline-danger btn-sm" style="margin-right: 10px;" routerLink="/main/usuario"><i class="pi pi-arrow-left"></i>&nbsp;&nbsp;Voltar</a>
+                <button class="btn btn-outline-primary btn-sm" type="submit" ><i class="pi pi-check"></i>&nbsp;&nbsp;Salvar</button>
+            </div>
+            <div class="form-group" *ngIf="this.usuario.isAdmin && this.formCadastro.get('id').value != this.usuario.id">
+                <button class="btn btn-outline-warning btn-sm" type="button" (click)="onResetPassword()" ><i class="pi pi-refresh"></i>&nbsp;&nbsp;Resetar Senha</button>
+            </div>
+            <div class="form-group" *ngIf="this.formCadastro.get('id').value == this.usuario.id">
+                <!-- <a class="btn btn-outline-warning btn-sm"  ><i class="pi pi-refresh"></i>&nbsp;&nbsp;Resetar Senha</a> -->
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#trocarSenhaModal">
+                    <i class="pi pi-refresh"></i>&nbsp;&nbsp;Trocar Senha
+                </button>
+            </div>
+        </div>
+
+    
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="trocarSenhaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Trocar Senha</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- <form [formGroup]="formSenha" (click)="onSavePassword()"> -->
+                    <div class="form-group">
+                        <label for="senha">Nova Senha</label>
+                        <input class="form-control" id="senha" type="password" pPassword formControlName="senha" maxlength="60"
+                            autocomplete="off" weakLabel="Fraca" mediumLabel="Média" strongLabel="Forte" promptLabel="Digite a Senha">
+                    </div>
+                    <!-- </form>   -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal" (click)="onCleanPassword()"><i class="pi pi-times"></i>&nbsp;&nbsp;Cancelar</button>
+                    <button class="btn btn-outline-primary btn-sm" type="button" data-dismiss="modal" (click)="onSavePassword()" ><i class="pi pi-check"></i>&nbsp;&nbsp;Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- <div *ngIf="this.usuario == null || !this.usuario.isAdmin">
+    <div class="alert alert-danger">
+        <strong>Atenção!</strong> Você não tem permissão para acessar esta área.
+    </div>
+</div> -->

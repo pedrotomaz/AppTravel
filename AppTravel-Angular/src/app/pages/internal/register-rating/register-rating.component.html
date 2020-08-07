@@ -1,0 +1,91 @@
+<br>
+
+<!-- 
+<p-carousel 
+    [value]="this.locais" 
+    [numVisible]="3" 
+    [numScroll]="3" 
+    [responsiveOptions]="responsiveOptions"
+    [circular]="false">
+
+    <p-header>
+        <div class="row" style="justify-content: space-between;margin: auto;">
+            <h3>Avalie os locais que já conhece para indicarmos as melhores opções para você</h3>
+            <button class="btn btn-outline-primary" (click)="concluirCadastro()" >Concluir</button>
+        </div>
+        <hr>
+    </p-header>
+
+
+    <ng-template let-local pTemplate="item">
+
+        <div class="card border-secondary mb-3" style="height: 450px;margin-left: 1rem;margin-right: 1rem;">
+            <div class="img img-div">
+                <a routerLink="main/local/{{local.id}}"><img class="img img-recom" [src]="local.imagem"></a>
+            </div>
+            <div class="card-body text-secondary" style="border-top: 1px solid #6c757d ;">
+                <h5 class="card-title">{{ local.nome }}</h5>
+                <p class="card-text">{{ local.descricao }}</p>
+            </div>
+            <div class="card-footer bg-transparent border-secondary" style="display: flex;justify-content: space-between;">
+                <p-rating *ngIf="this.usuario != null" [ngModel]="local.avaliacao != null ? local.avaliacao.nota : 0" [cancel]="false" (onRate)="onRate($event, local.avaliacao != null ? local.avaliacao.id : '', local.id )" ></p-rating>
+                <button *ngIf="local.avaliacao == null" class="btn btn-sm btn-outline-primary" (click)="setInterestList(local.id)" type="button">Quero Conhecer</button>
+            </div>
+        </div>
+
+    </ng-template>
+
+
+</p-carousel> -->
+
+
+<!-- BEGIN TODOS LOCAIS -->
+<!-- <div *ngIf="this.locais.length > 3"> -->
+    <!-- TODOS LOCAIS -->
+    <p-carousel 
+        [value]="this.locais" 
+        [numVisible]="3" 
+        [numScroll]="1" 
+        [responsiveOptions]="responsiveOptions"
+        [circular]="true" 
+        [autoplayInterval]="5000">
+  
+        <p-header>
+            <div class="row" style="justify-content: space-between;margin: auto;">
+                <h3>Avalie os locais que já conhece para indicarmos as melhores opções para você</h3>
+                <button class="btn btn-outline-primary" (click)="concluirCadastro()" >Concluir</button>
+            </div>
+            <hr>
+        </p-header>
+  
+  
+      <ng-template let-local pTemplate="item">
+  
+        <div class="card border-secondary mb-3 card-out"
+          style="height: 420px;margin-left: 1rem;margin-right: 1rem; text-align: center;">
+          <div class="img img-div">
+            <a routerLink="/main/rating/view/{{local.id}}"><img class="img img-small" [src]="local.imagem"
+                *ngIf="local.imagem != null && local.imagem != ''"></a>
+            <a routerLink="/main/local/view/{{local.id}}"><img class="img img-small" src="assets/images/sem-imagem.png"
+                alt="Sem Imagem" *ngIf="local.imagem == null || local.imagem == ''"></a>
+          </div>
+          <div class="card-body text-secondary card-out">
+            <h6 class="card-title">{{ local.nome }}</h6>
+            <p class="card-text" style="text-align: justify;">{{ local.descricao }}</p>
+          </div>
+  
+          <div class="card-footer bg-transparent border-secondary"
+            style="display: flex;justify-content: space-between;padding-left: 10px;padding-right: 10px;align-items: center;">
+            <p-rating *ngIf="this.usuario != null" [ngModel]="local.avaliacao != null ? local.avaliacao.nota : 0"
+              [cancel]="false" (onRate)="onRate($event, local.avaliacao != null ? local.avaliacao.id : '', local.id )">
+            </p-rating>
+            <button *ngIf="local.avaliacao == null && this.usuario != null" class="btn btn-sm btn-outline-primary"
+              (click)="setInterestList(local.id)" type="button">Quero Conhecer</button>
+          </div>
+        </div>
+  
+      </ng-template>
+  
+  
+    </p-carousel>
+  <!-- </div> -->
